@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import {MONGODB_URI} from '../../../settings.json'
 export default async function connectMongo() {
     try {
-        await mongoose.connect(MONGODB_URI)
+        await mongoose.connect('mongodb+srv://burakyabgu:Burak123@cluster0.s7cqbgh.mongodb.net')
         console.log('MongoDB veritabanına bağlandı.')
     } catch (err) {
         console.log('hata: ', err)

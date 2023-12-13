@@ -5,6 +5,6 @@ const TodoSchema = new Schema({
     description: String,
 }, {timestamps: true})
 
-const TodoModel = mongoose.model('Todo', TodoSchema)
+const Todo = mongoose.models.Todo || mongoose.model('Todo', TodoSchema)
 
-export default TodoModel
+export default Todo

@@ -2,8 +2,9 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import HeaderText from "../utils/HeaderText"
+import {useTodos} from '../context/TodosContext'
 export default function page(){
-    const [todos, setTodos] = useState([])
+    const {todos, setTodos} = useTodos()
     useEffect(()=> {
         async function getTodos(){
             try {

@@ -1,9 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Head from 'next/head'
 import Link from 'next/link'
-
+import { TodosProvider } from './context/TodosContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -28,7 +27,9 @@ export default function RootLayout({
           <Link href="/todos">Todos</Link>
           <Link href="/create">Create Todo</Link>
         </nav>
-        {children}
+        <TodosProvider>
+          {children}
+        </TodosProvider>
       </body>
     </html>
   )

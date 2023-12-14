@@ -3,15 +3,18 @@ import axios from "axios"
 import { useState } from "react"
 import HeaderText from '../utils/HeaderText'
 export default function Create(){
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [choose, setChoose] = useState({title: '', description: ''})
+    function changeHandle(e:any){
+        console.log(choose)
+        setChoose({...choose, [e.target.name]: e.target.value})
+    }
     async function handleSubmit(e:any){
         e.preventDefault()
-        if(title && description) {
+        if(choose.title && choose.description) {
             try {
                 const res = await axios.post('/api', {
-                    title,
-                    description
+                    title: choose?.title,
+                    description: choose?.description,
                 })
                 if(res.data) console.log(res.data)
             } catch (err) {
@@ -26,8 +29,8 @@ export default function Create(){
         <>
             <HeaderText>Todo Create Page</HeaderText>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)} placeholder="title..." />
-                <input type="text" value={description} onChange={(e)=> setDescription(e.target.value)} placeholder="description" />
+                <input type="text" name="title" value={choose?.title} onChange={changeHandle} placeholder="title..." />
+                <input type="text" name="description" value={choose?.description} onChange={changeHandle} placeholder="description" />
                 <button type="submit">Yarat</button>
             </form>
         </>

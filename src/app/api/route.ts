@@ -18,11 +18,12 @@ export async function GET(){
 }
 
 export async function PUT(request: any){
-    const {data} = request.json()
+    await connectMongo()
+    const {data} = await request.json()
     await Todo.findByIdAndUpdate(data.id, {
         title: data.title,
         description: data.description
     })
-    return NextResponse.json({message: 'Veri Güncellendi'})
+    return NextResponse.json({message: 'Veri Güncellendi'}, {status: 200})
 }
 

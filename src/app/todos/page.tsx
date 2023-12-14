@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import HeaderText from "../utils/HeaderText"
 import {useTodos} from '../context/TodosContext'
+import Link from "next/link"
 export default function page(){
     const {todos, setTodos} = useTodos()
     useEffect(()=> {
@@ -24,6 +25,7 @@ export default function page(){
             {todos?.map((item, key)=><div key={key} className="border-2 border-gray-400 max-w-[40vw] m-6">
                 <h2>{item?.title}</h2>
                 <p> {item?.description} </p>
+                <Link href={`update/${item?._id}`}>Düzenle</Link>
             </div>
             )}
         </>

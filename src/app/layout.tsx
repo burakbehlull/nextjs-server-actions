@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import { TodosProvider } from './context/TodosContext'
+import LinkButton from './utils/LinkButton'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -21,11 +21,11 @@ export default function RootLayout({
         <title>Nextjs Server Operations</title>
       </head>
       
-      <body className={inter.className}>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/todos">Todos</Link>
-          <Link href="/create">Create Todo</Link>
+      <body className={`${inter.className} py-4 px-8`}>
+        <nav className='flex gap-4'>
+          <LinkButton url="/">Home</LinkButton>
+          <LinkButton url="/todos">Todos</LinkButton>
+          <LinkButton url="/create">Create Todo</LinkButton>
         </nav>
         <TodosProvider>
           {children}

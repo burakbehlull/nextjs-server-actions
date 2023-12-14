@@ -10,3 +10,9 @@ export async function POST(request: any){
         message:'Todo Yaratıldı'
     }, {status: 201})
 }
+
+export async function GET(){
+    await connectMongo()
+    const todos = await Todo.find({})
+    return NextResponse.json({todos})
+}

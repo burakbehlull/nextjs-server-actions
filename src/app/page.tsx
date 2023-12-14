@@ -1,8 +1,10 @@
+import HeaderText from "./utils/HeaderText";
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <>
-      <h1>Nextjs Server Operations</h1>
+      <HeaderText>Nextjs Server Operations</HeaderText>
     </>
   )
 }

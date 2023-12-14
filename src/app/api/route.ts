@@ -16,3 +16,13 @@ export async function GET(){
     const todos = await Todo.find({})
     return NextResponse.json({todos})
 }
+
+export async function PUT(request: any){
+    const {data} = request.json()
+    await Todo.findByIdAndUpdate(data.id, {
+        title: data.title,
+        description: data.description
+    })
+    return NextResponse.json({message: 'Veri Güncellendi'})
+}
+

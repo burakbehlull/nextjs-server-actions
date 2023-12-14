@@ -4,7 +4,10 @@ import { useState, useEffect } from "react"
 import HeaderText from "../utils/HeaderText"
 import {useTodos} from '../context/TodosContext'
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+
 export default function page(){
+    const router = useRouter()
     const {todos, setTodos} = useTodos()
     useEffect(()=> {
         async function getTodos(){
@@ -18,7 +21,15 @@ export default function page(){
         }
         getTodos()
     }, [])
-    console.log(todos)
+
+    function remove(_id:any){
+        axios.delete(`/api?id=${_id}`).then(()=> {
+            router.refresh()
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     return(
         <>
             <HeaderText>Todos</HeaderText>
@@ -26,6 +37,7 @@ export default function page(){
                 <h2>{item?.title}</h2>
                 <p> {item?.description} </p>
                 <Link href={`update/${item?._id}`}>Düzenle</Link>
+                <button onClick={()=> remove(item?._id)}>Sil</button>
             </div>
             )}
         </>

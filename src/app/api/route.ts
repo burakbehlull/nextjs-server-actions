@@ -27,3 +27,10 @@ export async function PUT(request: any){
     return NextResponse.json({message: 'Veri Güncellendi'}, {status: 200})
 }
 
+export async function DELETE(request:any) {
+    await connectMongo()
+    const id = await request.nextUrl.searchParams.get('id')
+    await Todo.findByIdAndDelete(id)
+    return NextResponse.json({message: 'Silindi'}, {status: 200})
+}
+

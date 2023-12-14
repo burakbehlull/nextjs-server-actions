@@ -21,7 +21,7 @@ export default function Update(id:any){
 
     function handleSubmit(e:any){
         e.preventDefault()
-        if(form.title && form.description){
+        if(form.title || form.description){
             axios.put('/api', {
                 method: 'PUT',
                 data: {
@@ -35,6 +35,8 @@ export default function Update(id:any){
             }).catch((err)=> {
                 console.log('hata: ', err)
             })
+        } else {
+            alert('Lütfen alanları doldurunuz.')
         }
     }
     return(
@@ -44,7 +46,7 @@ export default function Update(id:any){
                 <input type="text" name="title" value={form?.title} onChange={handleChange} placeholder={todoFilter?.title} />
                 <input type="text" name="description" value={form?.description} onChange={handleChange} placeholder={todoFilter?.description} />
                 <input type="hidden" name="id" value={id_parameter} />
-                <button>Güncelle</button>
+                <button type="submit">Güncelle</button>
             </form>
         </>
     )

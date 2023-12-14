@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        @apply outline-none
+    }
+    input {
+        @apply border-2 border-solid border-[#8de2e3] rounded-md p-1 pl-2 m-2 shadow-sm placeholder:italic hover:border-[#7deef0];
+    }
+    input:focus {
+        @apply border-[#92d5d6] ring-1
+    }
+    form {
+        @apply flex justify-center block mt-4
+    }
+    button[type="submit"] {
+        @apply bg-sky-600 rounded-md py-[.3em] px-[.5em] text-zinc-100 shadow inline-block focus:ring-1
+    }
+
+    h1 {
+        @apply text-center text-4xl text-sky-400 mt-6
+    }
+}
